@@ -1,4 +1,4 @@
-## Tentang repositori ini
+## Tentang Repositori ini
 
 Repositori ini ditujukan untuk packaging pengumpulan tugas perancangan sistem yang berisi: (1) dokumentasi umum, (2) dokumentasi kebutuhan, dan (3) prototyping (sample codes, etc).
 
@@ -8,7 +8,7 @@ Repositori ini ditujukan untuk packaging pengumpulan tugas perancangan sistem ya
 4. Direktori `prototyping`
 5. Informasi anggota kelompok
 
-# Deskripsi repositori
+# Deskripsi Repositori
 
 Repositori ini ditujukan untuk matakuliah Rekayasa Perangkat Lunak yang berfokus pada pengembangan rancangan sistem informasi dengan proses bisnis Penjualan Online untuk Harmon corp menggunakan interface Streamlit dan database Firebase Firestore.
 
