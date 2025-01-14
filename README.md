@@ -18,14 +18,20 @@ Repositori ini ditujukan untuk matakuliah Rekayasa Perangkat Lunak yang berfokus
 
 ## Direktori `req-docs`:
 
-1. `use-case` - _berisi berkas-berkas desain use-case diagrams_
-2. `activity` - _berisi berkas-berkas desain activity diagrams_
-3. `swimlane` - _berisi berkas-berkas desain swimlane diagrams_
-4. `uml`
+1. `use-case` - [_berisi berkas-berkas desain use-case diagrams_](https://github.com/rizkyyanuark/RPL-HarmonCorp/blob/main/req-docs/usecase.jpg)
+2. `activity` - [_berisi berkas-berkas desain activity diagrams_](https://github.com/rizkyyanuark/RPL-HarmonCorp/blob/main/req-docs/activity%20diagram.jpg)
+3. `swimlane` - [_berisi berkas-berkas desain swimlane diagrams_](https://github.com/rizkyyanuark/RPL-HarmonCorp/blob/main/req-docs/activity%20swimlane%20diagram.png)
+4. `uml` - [_berisi berkas-berkas desain uml_](https://github.com/rizkyyanuark/RPL-HarmonCorp/blob/main/req-docs/uml.jpg)
 
 ## Direktori `prototyping`
 
 1. Screenshoot Interface streamlit
+   <div align="center">
+  <a href="https://github.com/rizkyyanuark/RPL-HarmonCorp/blob/main/req-docs/ss_interface.jpg&utm_medium=member_desktop" target="_blank">
+    <img src="https://github.com/rizkyyanuark/RPL-HarmonCorp/blob/main/req-docs/ss_interface.jpg" alt="Report Video" width="600"/>
+  </a>
+</div>
+2. 
 
 # Informasi anggota kelompok\*
 
