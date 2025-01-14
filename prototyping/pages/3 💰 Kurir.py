@@ -6,7 +6,7 @@ from utils.firebase_config import db
 
 # Check if user is logged in
 if st.session_state.role == 'Kurir' and 'signout' in st.session_state and st.session_state.signout:
-    logo_path = os.path.join("images", "logo.jpg")
+    logo_path = os.path.join("image", "logo.jpg")
     if os.path.exists(logo_path):
         logo = Image.open(logo_path)
     else:
