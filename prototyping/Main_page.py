@@ -18,8 +18,7 @@ else:
 
 st.set_page_config(
     page_title="Welcome to Harmon Corp!",
-    page_icon=logo if logo else None,
-    theme="light"
+    page_icon=logo if logo else None
 )
 
 load_dotenv()
