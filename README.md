@@ -31,7 +31,6 @@ Repositori ini ditujukan untuk matakuliah Rekayasa Perangkat Lunak yang berfokus
     <img src="https://github.com/rizkyyanuark/RPL-HarmonCorp/blob/main/req-docs/ss_interface.jpg" alt="Report Video" width="600"/>
   </a>
 </div>
-2. 
 
 # Informasi anggota kelompok\*
 
