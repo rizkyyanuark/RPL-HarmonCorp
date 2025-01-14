@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 prototyping/.env
 prototyping/RPL_CREDENTIALS.json
+secrets.toml
 # C extensions
 *.so
 rplenv/
