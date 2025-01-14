@@ -4,6 +4,11 @@ import pandas as pd
 from PIL import Image
 from utils.firebase_config import db
 
+st.sidebar.markdown(
+    """
+    ##### **Visit our repository [here](https://github.com/rizkyyanuark/RPL-HarmonCorp)!**
+    """
+)
 # Check if user is logged in
 if st.session_state.role == 'Penjual' and 'signout' in st.session_state and st.session_state.signout:
     logo_path = os.path.join("image", "logo.jpg")

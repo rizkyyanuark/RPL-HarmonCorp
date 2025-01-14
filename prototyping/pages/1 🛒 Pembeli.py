@@ -6,6 +6,11 @@ from utils.firebase_config import db
 from utils.pdf_generator import generate_receipt
 from datetime import datetime
 
+st.sidebar.markdown(
+    """
+    ##### **Visit our repository [here](https://github.com/rizkyyanuark/RPL-HarmonCorp)!**
+    """
+)
 # Check if user is logged in
 if st.session_state.role == 'Pembeli' and 'signout' in st.session_state and st.session_state.signout:
     logo_path = os.path.join("image", "logo.jpg")
@@ -31,7 +36,7 @@ if st.session_state.role == 'Pembeli' and 'signout' in st.session_state and st.s
 
     st.title('Welcome Home!')
     st.text(f'Hello, {st.session_state.username}!')
-    st.title("Daftar Ketersediaan Barang di Store 👟")
+    st.title("Product dari Platform Harmon Corp 👟")
 
     # Load products from Firestore
     products = load_products()

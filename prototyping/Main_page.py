@@ -40,15 +40,20 @@ else:
     logo_home = None
 
 # Sidebar success message
-st.sidebar.success("Select a demo above.")
+st.sidebar.success("Select role above.")
+st.sidebar.markdown(
+    """
+    ##### **Visit our repository [here](https://github.com/rizkyyanuark/RPL-HarmonCorp)!**
+    """
+)
 
 # Convert logo to Base64 and display in the center
-if logo:
+if logo_home:
     logo_base64 = image_to_base64(logo_home)
     st.markdown(
         f"""
         <div style="text-align: center; padding: 0px 0;">
-            <img src="data:image/png;base64,{logo_base64}" alt="Logo" style="width: 50%; max-width: 300px;">
+            <img src="data:image/png;base64,{logo_base64}" alt="Logo" style="width: 100%; max-width: 400px;">
         </div>
         """,
         unsafe_allow_html=True,
@@ -58,13 +63,6 @@ if logo:
 st.write(
     "<h1 style='text-align: center;'>Welcome!</h1>",
     unsafe_allow_html=True,
-)
-
-# Link to repository
-st.markdown(
-    """
-    ##### **Visit our repository [here](https://github.com/NV-Bite)!**
-    """
 )
 
 # Initialize session state for user data
