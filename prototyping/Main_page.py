@@ -1,13 +1,25 @@
 import streamlit as st
 from PIL import Image
-import base64
 from io import BytesIO
+import base64
 import os
 from firebase_admin import auth
 from dotenv import load_dotenv
 from utils.account import save_login_logout, login, logout, send_verification_email
 from utils.firebase_config import db  # Import Firestore client
 from datetime import datetime
+
+# Set page configuration
+logo_path = os.path.join("images", "logo_home.jpg")
+if os.path.exists(logo_path):
+    logo = Image.open(logo_path)
+else:
+    logo = None
+
+st.set_page_config(
+    page_title="Welcome to Harmon Corp!",
+    page_icon=logo if logo else None,
+)
 
 load_dotenv()
 FIREBASE_API_KEY = os.getenv("FIREBASE_API_KEY")
@@ -18,19 +30,6 @@ def image_to_base64(image: Image.Image) -> str:
     image.save(buffered, format="PNG")
     return base64.b64encode(buffered.getvalue()).decode()
 
-
-# Load images
-logo_path = os.path.join("images", "logo_home.jpg")
-if os.path.exists(logo_path):
-    logo = Image.open(logo_path)
-else:
-    logo = None
-
-# Set page configuration
-st.set_page_config(
-    page_title="Welcome to Harmon Corp!",
-    page_icon=logo if logo else None,
-)
 
 # Sidebar success message
 st.sidebar.success("Select a demo above.")
