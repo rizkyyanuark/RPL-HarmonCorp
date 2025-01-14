@@ -12,14 +12,25 @@ import streamlit as st
 
 # Set page configuration
 logo_path = os.path.join("images", "logo.jpg")
-logo = Image.open(logo_path)
-logo_home = os.path.join("images", "logo_home.jpg")
-logo_home = Image.open(logo_home)
+logo_home_path = os.path.join("images", "logo_home.jpg")
+
+# Load images with error handling
+try:
+    logo = Image.open(logo_path)
+except FileNotFoundError:
+    st.error(f"File not found: {logo_path}")
+    logo = None
+
+try:
+    logo_home = Image.open(logo_home_path)
+except FileNotFoundError:
+    st.error(f"File not found: {logo_home_path}")
+    logo_home = None
+
 st.set_page_config(
     page_title="Welcome to Harmon Corp!",
-    page_icon=logo,  # You can use an emoji or a path to an image file
+    page_icon=logo if logo else None,
 )
-
 
 load_dotenv()
 FIREBASE_API_KEY = os.getenv("FIREBASE_API_KEY")
