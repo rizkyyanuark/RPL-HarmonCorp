@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 prototyping/.env
-prototyping/credentials_rpl.json
+prototyping/RPL_CREDENTIALS.json
 # C extensions
 *.so
 rplenv/

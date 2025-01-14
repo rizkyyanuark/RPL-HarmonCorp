@@ -13,8 +13,8 @@ FIREBASE_API_KEY = credentials_dict['firebase_api']
 # Konfigurasi SMTP
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587
-SMTP_USERNAME = 'smtp_username'
-SMTP_PASSWORD = 'smtp_password'
+SMTP_USERNAME = credentials_dict['smtp_username']
+SMTP_PASSWORD = credentials_dict['smtp_password']
 
 
 def save_login_logout(username, event_type):

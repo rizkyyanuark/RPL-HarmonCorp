@@ -2,7 +2,7 @@ import firebase_admin
 from firebase_admin import credentials, auth
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate("credentials_rpl.json")
+cred = credentials.Certificate("RPL_CREDENTIALS.json")
 firebase_admin.initialize_app(cred)
 
 
