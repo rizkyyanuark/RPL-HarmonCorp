@@ -32,7 +32,7 @@ def image_to_base64(image: Image.Image) -> str:
 
 
 # Load images
-logo_home_url = "https://raw.githubusercontent.com/rizkyyanuark/RPL-HarmonCorp/main/prototyping/image/logo_home.jpg"
+logo_home_url = "https://raw.githubusercontent.com/rizkyyanuark/RPL-HarmonCorp/main/prototyping/image/logo_home.png"
 response = requests.get(logo_home_url)
 if response.status_code == 200:
     logo_home = Image.open(BytesIO(response.content))
