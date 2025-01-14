@@ -5,16 +5,16 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from firebase_admin import auth, firestore
 from datetime import datetime
-from utils.firebase_config import db, credentials_dict
+from utils.firebase_config import db
 
 # FIREBASE_API_KEY diambil langsung dari credentials_dict
-FIREBASE_API_KEY = credentials_dict['firebase_api']
+FIREBASE_API_KEY = st.secrets["firebase"]["firebase_api"]
 
 # Konfigurasi SMTP
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587
-SMTP_USERNAME = credentials_dict['smtp_username']
-SMTP_PASSWORD = credentials_dict['smtp_password']
+SMTP_USERNAME = st.secrets["smtp"]["username"]
+SMTP_PASSWORD = st.secrets["smtp"]["password"]
 
 
 def save_login_logout(username, event_type):
