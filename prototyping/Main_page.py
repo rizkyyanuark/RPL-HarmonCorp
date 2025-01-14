@@ -13,11 +13,9 @@ import streamlit as st
 # Set page configuration
 logo_path = os.path.join("image", "logo.jpg")
 logo = Image.open(logo_path)
-logo_home = os.path.join("image", "logo_home.jpg")
-logo_home = Image.open(logo_home)
 st.set_page_config(
     page_title="Welcome to Harmon Corp!",
-    page_icon=logo,
+    page_icon=logo,  # You can use an emoji or a path to an image file
 )
 
 
@@ -31,18 +29,27 @@ def image_to_base64(image: Image.Image) -> str:
     return base64.b64encode(buffered.getvalue()).decode()
 
 
+# Load images
+logo_path = os.path.join("image", "logo_home.jpg")
+if os.path.exists(logo_path):
+    logo = Image.open(logo_path)
+else:
+    logo = None
+
 # Sidebar success message
 st.sidebar.success("Select a demo above.")
 
-logo_base64 = image_to_base64(logo_home)
-st.markdown(
-    f"""
-        <div style="text-align: center; margin: 0; padding: 0;">
+# Convert logo to Base64 and display in the center
+if logo:
+    logo_base64 = image_to_base64(logo)
+    st.markdown(
+        f"""
+        <div style="text-align: center; padding: 5px 0;">
             <img src="data:image/png;base64,{logo_base64}" alt="Logo" style="width: 50%; max-width: 300px;">
         </div>
         """,
-    unsafe_allow_html=True,
-)
+        unsafe_allow_html=True,
+    )
 
 # Welcome text
 st.write(
