@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-@st.experimental_singleton
+@st.cache_resource
 def get_firebase_app():
     def get_secret():
         # Load credentials from Streamlit secrets
