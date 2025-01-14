@@ -1,25 +1,25 @@
-import streamlit as st
-from PIL import Image
-from io import BytesIO
-import base64
-import os
-from firebase_admin import auth
-from dotenv import load_dotenv
-from utils.account import save_login_logout, login, logout, send_verification_email
-from utils.firebase_config import db  # Import Firestore client
 from datetime import datetime
+from utils.firebase_config import db
+from utils.account import login, logout, send_verification_email
+from dotenv import load_dotenv
+from firebase_admin import auth
+import os
+import base64
+from io import BytesIO
+from PIL import Image
+import streamlit as st
+
 
 # Set page configuration
-logo_path = os.path.join("images", "logo_home.jpg")
-if os.path.exists(logo_path):
-    logo = Image.open(logo_path)
-else:
-    logo = None
-
+logo_path = os.path.join("images", "logo.jpg")
+logo = Image.open(logo_path)
+logo_home = os.path.join("images", "logo_home.jpg")
+logo_home = Image.open(logo_home)
 st.set_page_config(
     page_title="Welcome to Harmon Corp!",
-    page_icon=logo if logo else None
+    page_icon=logo,  # You can use an emoji or a path to an image file
 )
+
 
 load_dotenv()
 FIREBASE_API_KEY = os.getenv("FIREBASE_API_KEY")
@@ -34,17 +34,15 @@ def image_to_base64(image: Image.Image) -> str:
 # Sidebar success message
 st.sidebar.success("Select a demo above.")
 
-# Convert logo to Base64 and display in the center
-if logo:
-    logo_base64 = image_to_base64(logo)
-    st.markdown(
-        f"""
-        <div style="text-align: center; padding: 5px 0;">
+logo_base64 = image_to_base64(logo_home)
+st.markdown(
+    f"""
+        <div style="text-align: center; margin: 0; padding: 0;">
             <img src="data:image/png;base64,{logo_base64}" alt="Logo" style="width: 50%; max-width: 300px;">
         </div>
         """,
-        unsafe_allow_html=True,
-    )
+    unsafe_allow_html=True,
+)
 
 # Welcome text
 st.write(
