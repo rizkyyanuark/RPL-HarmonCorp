@@ -8,14 +8,16 @@ import base64
 from io import BytesIO
 from PIL import Image
 import streamlit as st
+import requests
 
 
 # Set page configuration
-logo_path = os.path.join("image", "logo.jpg")
-logo = Image.open(logo_path)
+logo_url = "https://raw.githubusercontent.com/rizkyyanuark/RPL-HarmonCorp/main/prototyping/image/logo.jpg"
+response = requests.get(logo_url)
+logo = Image.open(BytesIO(response.content))
 st.set_page_config(
     page_title="Welcome to Harmon Corp!",
-    page_icon=logo,  # You can use an emoji or a path to an image file
+    page_icon=logo,
 )
 
 
@@ -30,21 +32,22 @@ def image_to_base64(image: Image.Image) -> str:
 
 
 # Load images
-logo_path = os.path.join("image", "logo_home.jpg")
-if os.path.exists(logo_path):
-    logo = Image.open(logo_path)
+logo_home_url = "https://raw.githubusercontent.com/rizkyyanuark/RPL-HarmonCorp/main/prototyping/image/logo_home.jpg"
+response = requests.get(logo_home_url)
+if response.status_code == 200:
+    logo_home = Image.open(BytesIO(response.content))
 else:
-    logo = None
+    logo_home = None
 
 # Sidebar success message
 st.sidebar.success("Select a demo above.")
 
 # Convert logo to Base64 and display in the center
 if logo:
-    logo_base64 = image_to_base64(logo)
+    logo_base64 = image_to_base64(logo_home)
     st.markdown(
         f"""
-        <div style="text-align: center; padding: 5px 0;">
+        <div style="text-align: center; padding: 0px 0;">
             <img src="data:image/png;base64,{logo_base64}" alt="Logo" style="width: 50%; max-width: 300px;">
         </div>
         """,
