@@ -46,7 +46,7 @@ Nama kelompok: Kelompok 2
     <img src="https://avatars.githubusercontent.com/u/82692777?v=4" width="100px;" alt="RizkyYanuarK"/>
   </a>
   <br />
-  <sub>RizkyYanuarK</sub>
+  <sub>Rizky Yanuar K</sub>
 </td>
 <td align="center">
   <a href="https://github.com/RakhaAlcander">
@@ -60,7 +60,7 @@ Nama kelompok: Kelompok 2
     <img src="https://avatars.githubusercontent.com/u/171494212?v=4" width="100px;" alt="Rivadian Ardiansyah"/>
   </a>
   <br />
-  <sub>Rivadian Ardiansyah</sub>
+  <sub>Riva Dian Ardiansyah</sub>
 </td>
   </table>
 </div>
