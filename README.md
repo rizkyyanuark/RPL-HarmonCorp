@@ -32,9 +32,7 @@ Repositori ini ditujukan untuk matakuliah Rekayasa Perangkat Lunak yang berfokus
   </a>
 </div>
 
-# Informasi anggota kelompok\*
-
-Nama kelompok: Kelompok 2
+# Kelompok 2
 
 **Anggota**
 
