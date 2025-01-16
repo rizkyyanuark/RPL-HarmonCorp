@@ -92,6 +92,8 @@ def login(email, password):
                 st.warning("User data not found.")
         except Exception as e:
             st.warning(f"Login Failed: {e}")
+    else:
+        st.warning("Invalid email or password")
 
 
 def logout():
