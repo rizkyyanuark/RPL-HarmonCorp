@@ -1,4 +1,4 @@
-## Tentang Repositori ini
+## Tentang Repositori ini.
 
 Repositori ini ditujukan untuk packaging pengumpulan tugas perancangan sistem yang berisi: (1) dokumentasi umum, (2) dokumentasi kebutuhan, dan (3) prototyping (sample codes, etc).
 
