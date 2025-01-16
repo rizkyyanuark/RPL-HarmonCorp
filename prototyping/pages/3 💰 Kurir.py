@@ -3,26 +3,36 @@ import pandas as pd
 from PIL import Image
 import os
 from utils.firebase_config import db
+from utils.cookies import cookies, load_cookie_to_session
 
+logo_path = os.path.join("image", "logo.jpg")
+if os.path.exists(logo_path):
+    logo = Image.open(logo_path)
+else:
+    logo = None
+
+st.set_page_config(
+    page_title="Kurir",
+    page_icon=logo if logo else None,
+)
 st.sidebar.markdown(
     """
     ##### **Visit our repository [here](https://github.com/rizkyyanuark/RPL-HarmonCorp)!**
     """
 )
-# Check if user is logged in
-if st.session_state.role == 'Kurir' and 'signout' in st.session_state and st.session_state.signout:
-    logo_path = os.path.join("image", "logo.jpg")
-    if os.path.exists(logo_path):
-        logo = Image.open(logo_path)
-    else:
-        logo = None
 
-    st.set_page_config(
-        page_title="Kurir",
-        page_icon=logo if logo else None,
-    )
+try:
+    load_cookie_to_session(st.session_state)
+except RuntimeError:
+    st.stop()
 
-    st.title('Kurir Page')
+if (
+    "role" in st.session_state and
+    st.session_state.role == "Kurir" and
+    "signout" in st.session_state and
+    not st.session_state.signout
+):
+    st.title('Courier Page')
     st.text(f'Hello, {st.session_state.username}!')
 
     # Display orders assigned to the courier
@@ -52,4 +62,4 @@ if st.session_state.role == 'Kurir' and 'signout' in st.session_state and st.ses
     else:
         st.write("No assigned orders found.")
 else:
-    st.error("Please log in as Kurir to access this page.")
+    st.error("Please log in as Courier to access this page.")

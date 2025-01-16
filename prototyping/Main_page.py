@@ -3,12 +3,12 @@ from utils.firebase_config import db
 from utils.account import login, logout, send_verification_email
 from dotenv import load_dotenv
 from firebase_admin import auth
-import os
 import base64
 from io import BytesIO
 from PIL import Image
 import streamlit as st
 import requests
+from utils.cookies import cookies, save_user_to_cookie, clear_user_cookie, load_cookie_to_session
 
 
 # Set page configuration
@@ -22,7 +22,6 @@ st.set_page_config(
 
 
 load_dotenv()
-FIREBASE_API_KEY = os.getenv("FIREBASE_API_KEY")
 
 
 def image_to_base64(image: Image.Image) -> str:
@@ -65,22 +64,13 @@ st.write(
     unsafe_allow_html=True,
 )
 
-# Initialize session state for user data
-if 'username' not in st.session_state:
-    st.session_state.username = ''
+try:
+    load_cookie_to_session(st.session_state)
+except RuntimeError:
+    st.stop()
 
-if 'useremail' not in st.session_state:
-    st.session_state.useremail = ''
-
-if 'signout' not in st.session_state:
-    st.session_state.signout = False
-
-if 'role' not in st.session_state:
-    st.session_state.role = ''
-
-if not st.session_state.signout:
-    # If not logged in
-    choice = st.selectbox('Login/Signup', ['Login', 'Sign up'])
+if st.session_state.signout:
+    choice = st.selectbox("Login/Signup", ["Login", "Sign up"])
     if choice == "Login":
         email = st.text_input("Email")
         password = st.text_input("Password", type="password")
@@ -91,6 +81,23 @@ if not st.session_state.signout:
                     st.error("Email not verified. Please check your inbox.")
                 else:
                     login(email, password)
+                    user_data = db.collection("users").document(
+                        user.uid).get().to_dict()
+                    st.session_state.username = user_data["name"]
+                    st.session_state.useremail = email
+                    st.session_state.role = user_data["role"]
+                    st.session_state.store_name = user_data.get(
+                        "store_name", "")
+                    st.session_state.signout = False
+
+                    # Save to cookies
+                    save_user_to_cookie(
+                        st.session_state.username,
+                        st.session_state.useremail,
+                        st.session_state.role,
+                        st.session_state.store_name,
+                    )
+                    st.success("Login successful!")
             except Exception as e:
                 st.error(f"Error logging in: {e}")
     else:
@@ -98,7 +105,10 @@ if not st.session_state.signout:
         email = st.text_input("Email Address")
         password = st.text_input("Password", type="password")
         confirm_password = st.text_input("Confirm Password", type="password")
-        role = st.selectbox('Select Role', ['Pembeli', 'Penjual', 'Kurir'])
+        role = st.selectbox("Select Role", ["Pembeli", "Penjual", "Kurir"])
+
+        if role == "Penjual":
+            store_name = st.text_input("Store Name")
 
         if st.button("Create my account"):
             if password != confirm_password:
@@ -107,23 +117,30 @@ if not st.session_state.signout:
                 try:
                     user = auth.create_user(
                         email=email, password=password, uid=username)
-                    db.collection('users').document(user.uid).set({
-                        'name': username,
-                        'email': email,
-                        'role': role
-                    })
-                    # Send email verification
+                    user_data = {
+                        "name": username,
+                        "email": email,
+                        "role": role,
+                    }
+                    if role == "Penjual":
+                        user_data["store_name"] = store_name
+                        st.session_state.store_name = store_name
+
+                    db.collection("users").document(user.uid).set(user_data)
                     send_verification_email(email)
                     st.success(
                         "Account created successfully! Please verify your email.")
-                    st.markdown(
-                        "Please check your email for the verification link.")
                     st.balloons()
                 except Exception as e:
                     st.error(f"Error creating account: {e}")
 else:
-    # If logged in
-    st.text('Name: ' + st.session_state.username)
-    st.text('Email: ' + st.session_state.useremail)
-    st.text('Role: ' + st.session_state.role)
-    st.button('Sign Out', on_click=logout)
+    st.markdown(
+        f"<h2 style='text-align: left;'>Welcome back, {st.session_state.username}!</h2>", unsafe_allow_html=True)
+    st.text(f"Email: {st.session_state.useremail}")
+    st.text(f"Role: {st.session_state.role}")
+    if st.session_state.role == "Penjual":
+        st.text(f"Store Name: {st.session_state.store_name}")
+    if st.button("Sign Out"):
+        st.session_state.signout = True
+        clear_user_cookie()
+        st.success("Signed out successfully!")
