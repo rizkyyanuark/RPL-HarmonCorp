@@ -125,7 +125,6 @@ if (
                 "courier": courier_email
             })
             st.success("Order confirmed and courier assigned!")
-            st.experimental_rerun()
     else:
         st.text("No orders to confirm.")
 else:
